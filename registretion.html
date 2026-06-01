@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+
+/* 🔵 Background with Blur */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  background: url('img/bgimg.jpg') no-repeat center/cover;
+  position: relative;
+}
+
+body::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  backdrop-filter: blur(5px);
+  top:0;
+  left:0;
+}
+
+/* 🔵 Card */
+.register-card {
+  position: relative;
+  background: #eef7ffde;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 550px;
+    padding: 20px 25px;
+  z-index: 1;
+}
+
+.register-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1976D2;
+}
+
+/* 🔵 Input */
+.form-control {
+  padding-right: 40px;
+  border: 1px solid #BBDEFB;
+     height: 42px;
+    font-size: 14px;
+}
+
+.form-control:focus{
+  border-color:#2196F3;
+  box-shadow: 0 0 5px rgba(33,150,243,0.4);
+}
+
+/* 🔵 Icon */
+.input-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2196F3;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.position-relative {
+  position: relative;
+}
+
+/* 🔵 Button */
+.btn-register {
+  background-color: #2196F3;
+  color: #fff;
+  width: 100%;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+}
+
+.btn-register:hover {
+  background-color: #1976D2;
+}
+
+/* 🔵 Links */
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+
+.login-link a {
+  color: #2196F3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+.bi-person-fill {
+  margin-right: 5px;
+}
+@media (max-width:576px){
+
+  .register-card{
+      padding:18px;
+      width: 93%;
+  }
+
+  .register-card h2{
+      font-size:1.5rem;
+      margin-bottom:15px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-card">
+  <h2>Register</h2>
+
+  <form id="registerForm">
+
+    <!-- First Name & Last Name -->
+    <div class="row mb-3">
+      <div class="col position-relative">
+        <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+        <i class="bi bi-person-fill input-icon"></i>
+      </div>
+      <div class="col position-relative">
+        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+        <i class="bi bi-person-fill input-icon"></i>
+      </div>
+    </div>
+
+    <!-- Email + DOB -->
+<div class="row mb-3">
+
+  <div class="col-md-6 position-relative">
+    <input type="email" class="form-control" id="email" placeholder="Email" required>
+    <i class="bi bi-envelope-fill input-icon"></i>
+  </div>
+
+  <div class="col-md-6 position-relative mt-3 mt-md-0">
+    <input type="date" class="form-control" id="dob" required>
+    <i class="bi bi-calendar-fill input-icon"></i>
+  </div>
+
+</div>
+
+<!-- Password + Confirm Password -->
+<div class="row mb-3">
+
+  <div class="col-md-6 position-relative">
+    <input type="password" class="form-control" id="password" placeholder="Password" required>
+    <i class="bi bi-eye-fill input-icon" id="togglePassword"></i>
+  </div>
+
+  <div class="col-md-6 position-relative mt-3 mt-md-0">
+    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+    <i class="bi bi-eye-fill input-icon" id="toggleConfirmPassword"></i>
+  </div>
+
+</div>
+
+    <!-- Register Button -->
+    <button type="submit" class="btn btn-register">
+      Register <i class="bi bi-person-plus-fill"></i>
+    </button>
+
+    <!-- Login -->
+    <div class="login-link">
+      Already a member? <a href="index.html">Login</a>
+    </div>
+
+  </form>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Password toggle
+const togglePassword = document.getElementById('togglePassword');
+const passwordField = document.getElementById('password');
+
+togglePassword.addEventListener('click', () => {
+  const type = passwordField.type === 'password' ? 'text' : 'password';
+  passwordField.type = type;
+  togglePassword.classList.toggle('bi-eye-slash-fill');
+});
+
+const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+const confirmPasswordField = document.getElementById('confirmPassword');
+
+toggleConfirmPassword.addEventListener('click', () => {
+  const type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+  confirmPasswordField.type = type;
+  toggleConfirmPassword.classList.toggle('bi-eye-slash-fill');
+});
+
+// Submit
+document.getElementById('registerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if(password !== confirmPassword){
+    alert("Passwords do not match!");
+    return;
+  }
+
+  alert("Registration Successful!");
+});
+</script>
+
+</body>
+</html>

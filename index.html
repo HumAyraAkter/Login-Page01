@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* 🔵 Background with Blur */
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      background: url('img/bgimg.jpg') no-repeat center/cover;
+      position: relative;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .login-card {
+      width: min(100%, 380px);
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(5px);
+
+      top: 0;
+      left: 0;
+    }
+
+    /* 🔵 Card */
+    .login-card {
+      position: relative;
+      background: #eef7ffde;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 380px;
+      z-index: 1;
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1976D2;
+    }
+
+    /* 🔵 Input */
+    .form-control {
+      padding-right: 40px;
+      border: 1px solid #BBDEFB;
+    }
+
+    .form-control:focus {
+      border-color: #2196F3;
+      box-shadow: 0 0 5px rgba(33, 150, 243, 0.4);
+    }
+
+    /* 🔵 Icon */
+    .input-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #2196F3;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .position-relative {
+      position: relative;
+    }
+
+    /* 🔵 Button */
+    .btn-login {
+      background-color: #2196F3;
+      color: #fff;
+      width: 100%;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-login:hover {
+      background-color: #1976D2;
+    }
+
+    /* 🔵 Links */
+    .forgot-password {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .forgot-password a {
+      color: #2196F3;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+
+    .create-account {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.95rem;
+    }
+
+    .create-account a {
+      color: #2196F3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .create-account a:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================
+   Responsive Design
+========================= */
+
+    /* Tablet */
+    @media (max-width: 768px) {
+
+      body {
+        padding: 20px;
+      }
+
+      .login-card {
+        max-width: 450px;
+        padding: 25px;
+      }
+
+      .login-card h2 {
+        font-size: 1.8rem;
+      }
+
+      .form-control {
+        height: 48px;
+        font-size: 15px;
+      }
+
+      .btn-login {
+        height: 48px;
+        font-size: 15px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 576px) {
+
+      body {
+        padding: 15px;
+        align-items: center;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px;
+        border-radius: 10px;
+      }
+
+      .login-card h2 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+      }
+
+      .form-control {
+        height: 46px;
+        font-size: 14px;
+      }
+
+      .input-icon {
+        font-size: 1rem;
+        right: 12px;
+      }
+
+      .btn-login {
+        height: 46px;
+        font-size: 14px;
+      }
+
+      .forgot-password a,
+      .create-account {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Small Mobile */
+    @media (max-width: 360px) {
+
+      .login-card {
+        padding: 18px;
+      }
+
+      .login-card h2 {
+        font-size: 1.4rem;
+      }
+
+      .form-control {
+        font-size: 13px;
+      }
+
+      .btn-login {
+        font-size: 13px;
+      }
+
+      .forgot-password a,
+      .create-account {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-card">
+    <h2>Login</h2>
+
+    <form id="loginForm">
+
+      <!-- Username -->
+      <div class="mb-3 position-relative">
+        <input type="text" class="form-control" id="username" placeholder="Username or Email" required>
+        <i class="bi bi-person-fill input-icon"></i>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3 position-relative">
+        <input type="password" class="form-control" id="password" placeholder="Password" required>
+        <i class="bi bi-eye-fill input-icon" id="togglePassword"></i>
+      </div>
+
+      <!-- Remember -->
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="rememberMe">
+        <label class="form-check-label">Remember Me</label>
+      </div>
+
+      <!-- Button -->
+      <button type="submit" class="btn btn-login">
+        Login <i class="bi bi-box-arrow-in-right"></i>
+      </button>
+
+      <!-- Forgot -->
+      <div class="forgot-password">
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <!-- Register -->
+      <div class="create-account">
+        Not create account? <a href="registretion.html">Create Account</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // show/hide password
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordField.type === 'password' ? 'text' : 'password';
+      passwordField.type = type;
+      togglePassword.classList.toggle('bi-eye-slash-fill');
+    });
+
+    // submit
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('rememberMe').checked;
+
+      alert(`Username: ${username}\nPassword: ${password}\nRemember: ${remember}`);
+    });
+  </script>
+
+</body>
+
+</html>
